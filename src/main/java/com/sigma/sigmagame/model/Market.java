@@ -20,25 +20,27 @@ import java.util.Queue;
 public class Market {
     public String what;
     public int price = 10;
-    public double Q = 200;
+    public double Q = 10;
+    
+    public double P0 = 10;
     public double slope = -10;
     
     public double Q_cycle = 0;
     public LinkedList<Double> history;
     public State state;
    
-    public Market(String what, State state, double Q0, double slope, int price) {
-        this.Q = Q0;
+    public Market(String what, State state, double P0, double slope, double Q) {
+        this.P0 = P0;
         this.slope = slope;
-        this.price = price;
+        this.price = (int)Math.round(Q*slope+P0);
         this.state = state;
         this.what = what;
-        history = new LinkedList<Double>();
-        history.add(slope*price+Q);
-        history.add(slope*price+Q);
-        history.add(slope*price+Q);
-        history.add(slope*price+Q);
-        history.add(slope*price+Q);
+        history = new LinkedList<>();
+        history.add(Q);
+        history.add(Q);
+        history.add(Q);
+        history.add(Q);
+        history.add(Q);
     }
     
     public KryoConfig.TransactionStatus buy(int q, Player buyer){
@@ -84,6 +86,6 @@ public class Market {
             sum += a;
         }
         sum /= history.size();
-        price = (int)Math.round((sum-Q)/slope);
+        price = (int)Math.round(Q*slope+P0);
     }
 }

@@ -6,3 +6,9 @@ com.sigma.sigmagame.KryoConfig$AskSenatorsToVoteDto
 {"player":{"byRFID":false,"rfid":"","plain":0},"vote":true}
 com.sigma.sigmagame.KryoConfig$RequestSenatorsListDto
 {}
+com.sigma.sigmagame.KryoConfig$RequestCompanyDataListDto
+{}
+com.sigma.sigmagame.KryoConfig$AddPlayer
+{"identifier":{"byRFID":true,"rfid":"F49642C1E108040001A6726DD581211D","plain":1},"company":{"amount":1000,"name":"LRC"}}
+com.sigma.sigmagame.KryoConfig$AddPlayer
+{"identifier":{"byRFID":true,"rfid":"E4EA59DA8D08040001ECD29C2405E41D","plain":1},"company":{"amount":1000,"name":"LRC"}}

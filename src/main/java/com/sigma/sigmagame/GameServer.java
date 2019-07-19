@@ -484,8 +484,9 @@ public class GameServer extends Listener{
             }
             else if(o instanceof AddPlayer){
                 AddPlayer msg = (AddPlayer)o;
-                Player pl = m.getPlayer(msg.identifier);
-                if(pl != null){
+                Player pl1 = m.playerByPlain.get(msg.identifier.plain);
+                Player pl2 = m.playerByRFID.get(msg.identifier.rfid);
+                if(pl1 != null || pl2 != null){
                     System.out.println("Player found: "+msg.identifier);
                     TransactionStatus ts = new TransactionStatus();
                     ts.isSuccess = false;

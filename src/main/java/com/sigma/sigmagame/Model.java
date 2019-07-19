@@ -48,11 +48,44 @@ public class Model {
         lobby = new Lobby();
         markets=new HashMap<>();
         for (int i = 0; i < ITEMS.length; i++) {
-            if(items.get(ITEMS[i]).couldBeProduced){
-                markets.put(ITEMS[i], new Market(ITEMS[i],state,200,-10,10));
-            }else{
-                markets.put(ITEMS[i], new Market(ITEMS[i],state,0,10,5));
+            switch(ITEMS[i]){
+                case "Углепластик":
+                    markets.put(ITEMS[i], new Market(ITEMS[i],state,107,0.12,359));
+                    break;
+                case "Уран":
+                    markets.put(ITEMS[i], new Market(ITEMS[i],state,138,1.8,90));
+                    break;
+                case "Квантовый процессор":
+                    markets.put(ITEMS[i], new Market(ITEMS[i],state,88,1.5,75));
+                    break;
+                case "Аккумулятор":
+                    markets.put(ITEMS[i], new Market(ITEMS[i],state,20,0.15,187));
+                    break;
+                case "Электромотор":
+                    markets.put(ITEMS[i], new Market(ITEMS[i],state,58,1,42));
+                    break;
+                case "Тостер":
+                    markets.put(ITEMS[i], new Market(ITEMS[i],state,466,-1,67));
+                    break;
+                case "Машина Делориан":
+                    markets.put(ITEMS[i], new Market(ITEMS[i],state,1042,-5,28));
+                    break;
+                case "Межгалактический корабль":
+                    markets.put(ITEMS[i], new Market(ITEMS[i],state,1970,-20,13));
+                    break;
+                case "Ядерное оружие":
+                    markets.put(ITEMS[i], new Market(ITEMS[i],state,3000,-40,10));
+                    break;
+                case "Пушка Гаусса":
+                    markets.put(ITEMS[i], new Market(ITEMS[i],state,770,-3,40));
+                    break;
+                default:
+                    System.out.println("unknown market");
+                    System.out.println("\""+ITEMS[i]+"\"");
+                    System.exit(1);
             }
+                
+            
         }
         corporationByName = new HashMap<>();
         for (String name : CORPORATIONS) {

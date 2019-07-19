@@ -32,12 +32,12 @@ import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 @WebSocket
 public class MyWebSocketHandler {
     public static class News{
-        int type;
-        HashMap<String,String> additional;
+        public int type;
+        public HashMap<String,String> additional;
     } 
     public static class NewsDto{
-        int period;
-        ArrayList<News> news;
+        public int period;
+        public ArrayList<News> news;
     } 
     
     private static final HashSet<Session> connections = new HashSet<>();
