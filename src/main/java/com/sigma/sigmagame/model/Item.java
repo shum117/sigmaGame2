@@ -7,65 +7,60 @@ package com.sigma.sigmagame.model;
 
 import com.sigma.sigmagame.KryoConfig;
 import com.sigma.sigmagame.Model;
+
 import java.util.Arrays;
 import java.util.HashMap;
 
 /**
- *
  * @author anton
  */
 public class Item {
     public String type;
     public boolean couldBeProduced;
-    public HashMap<String,Integer> recipe;
+    public HashMap<String, Integer> recipe;
     public int labour;
 
     public Item(String type) {
         this.type = type;
         recipe = new HashMap<>();
         couldBeProduced = false;
-        switch(type){
-            case "Car":
+        switch (type) {
+            case "Космический корабль":
                 couldBeProduced = true;
-                recipe.put("Iron", 2);
-                recipe.put("Copper", 1);
-                labour = 1;
+                recipe.put("Углепластик", 6);
+                recipe.put("Квантовый процессор", 2);
+                recipe.put("Электромотор", 1);
+                labour = 15;
                 break;
-            case "Locomotive":
+            case "Машина Делориан":
                 couldBeProduced = true;
-                recipe.put("Iron", 6);
-                recipe.put("Copper", 1);
-                labour = 2;
+                recipe.put("Углепластик", 3);
+                recipe.put("Квантовый процессор", 1);
+                recipe.put("Электромотор", 1);
+                labour = 7;
                 break;
-            case "Plane":
+            case "Пушка Гаусса":
                 couldBeProduced = true;
-                recipe.put("Iron", 2);
-                recipe.put("Copper", 1);
-                recipe.put("Wood", 3);
-                labour = 2;
+                recipe.put("Углепластик", 1);
+                recipe.put("Аккумулятор", 3);
+                recipe.put("Уран", 1);
+                labour = 5;
                 break;
-            case "Rifles":
+            case "Тостер":
                 couldBeProduced = true;
-                recipe.put("Iron", 1);
-                recipe.put("Copper", 0);
-                recipe.put("Wood", 1);
-                labour = 1;
-                break;
-            case "Ship":
-                couldBeProduced = true;
-                recipe.put("Iron", 4);
-                recipe.put("Copper", 4);
-                recipe.put("Wood", 2);
+                recipe.put("Углепластик", 2);
+                recipe.put("Аккумулятор", 1);
                 labour = 3;
                 break;
-            case "Tank":
+            case "Ядерное оружие":
                 couldBeProduced = true;
-                recipe.put("Iron", 4);
-                recipe.put("Copper", 2);
-                labour = 2;
+                recipe.put("Углепластик", 2);
+                recipe.put("Уран", 5);
+                recipe.put("Квантовый процессор", 2);
+                labour = 20;
                 break;
         }
     }
-    
-    
+
+
 }

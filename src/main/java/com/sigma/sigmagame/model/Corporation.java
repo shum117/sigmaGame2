@@ -25,7 +25,7 @@ public class Corporation {
         this.m = m;
         this.members = new ArrayList<>();
         this.name = name;
-        this.account = 1000;
+        this.account = 900;
         this.labour = 100;
     }
     

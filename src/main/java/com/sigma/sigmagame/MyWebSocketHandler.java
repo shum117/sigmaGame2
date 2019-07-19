@@ -5,28 +5,19 @@
  */
 package com.sigma.sigmagame;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import java.io.FileNotFoundException;
+import org.eclipse.jetty.websocket.api.Session;
+import org.eclipse.jetty.websocket.api.annotations.*;
+
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.eclipse.jetty.websocket.api.Session;
-import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
-import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
-import org.eclipse.jetty.websocket.api.annotations.OnWebSocketError;
-import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
-import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
 /**
- *
  * @author anton
  */
 @WebSocket
@@ -44,7 +35,7 @@ public class MyWebSocketHandler {
     private Session ss = null;
     private static final Gson gson = new GsonBuilder().setLenient().create();
 
-    public static void broadcast(NewsDto o){
+    public static void broadcast(NewsDto o) {
         for (Session connection : connections) {
             try {
                 System.out.println("WebSocket: send to " + connection.getRemote().toString());
@@ -54,8 +45,8 @@ public class MyWebSocketHandler {
             }
         }
     }
-    
-    
+
+
     @OnWebSocketClose
     public void onClose(int statusCode, String reason) {
         connections.remove(ss);
@@ -65,7 +56,7 @@ public class MyWebSocketHandler {
 
     @OnWebSocketError
     public void onError(Throwable t) {
-        if(ss == null)
+        if (ss == null)
             System.out.println("WebSocket: sudden null");
         System.out.println("WebSocket: Error: " + t.getMessage());
     }
@@ -79,7 +70,7 @@ public class MyWebSocketHandler {
 
     @OnWebSocketMessage
     public void onMessage(String message) {
-        if(ss == null)
+        if (ss == null)
             System.out.println("WebSocket: sudden null");
         System.out.println("WebSocket: Message: " + message);
     }
