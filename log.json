@@ -1,0 +1,8 @@
+com.sigma.sigmagame.KryoConfig$RequestSenatorsListDto
+{}
+com.sigma.sigmagame.KryoConfig$BuySenatorDto
+{"player":{"byRFID":false,"rfid":"","plain":0},"senator":55}
+com.sigma.sigmagame.KryoConfig$AskSenatorsToVoteDto
+{"player":{"byRFID":false,"rfid":"","plain":0},"vote":true}
+com.sigma.sigmagame.KryoConfig$RequestSenatorsListDto
+{}
