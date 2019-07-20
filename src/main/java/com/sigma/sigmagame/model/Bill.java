@@ -11,7 +11,7 @@ package com.sigma.sigmagame.model;
  */
 public class Bill {
     private int start;
-    public static final int price = 100;
+    public static final int price = 1000;
     public int id; 
     public static int lastid = 0;
     

@@ -85,7 +85,7 @@ public class GameServer extends Listener{
                 System.exit(1);
             }
             kryoserver.start();
-            org.eclipse.jetty.server.Server server = new org.eclipse.jetty.server.Server(8080);
+            org.eclipse.jetty.server.Server server = new org.eclipse.jetty.server.Server(12345);
             WebSocketHandler wsHandler = new WebSocketHandler() {
                 
                 
@@ -96,6 +96,7 @@ public class GameServer extends Listener{
             };
             server.setHandler(wsHandler);
             server.start();
+            server.join();
         } catch (Exception ex) {
             Logger.getLogger(GameServer.class.getName()).log(Level.SEVERE, null, ex);
             System.exit(1);
@@ -485,7 +486,7 @@ public class GameServer extends Listener{
             else if(o instanceof AddPlayer){
                 AddPlayer msg = (AddPlayer)o;
                 Player pl1 = m.playerByPlain.get(msg.identifier.plain);
-                Player pl2 = m.playerByRFID.get(msg.identifier.rfid);
+                Player pl2 = m.playerByRFID.get(msg.identifier.rfid.length() < 8 ? msg.identifier.rfid.toUpperCase() : msg.identifier.rfid.substring(0, 8).toUpperCase());
                 if(pl1 != null || pl2 != null){
                     System.out.println("Player found: "+msg.identifier);
                     TransactionStatus ts = new TransactionStatus();
@@ -502,6 +503,10 @@ public class GameServer extends Listener{
                 TransactionStatus ts = new TransactionStatus();
                 ts.isSuccess = true;
                 if(cnctn != null) cnctn.sendTCP(ts);
+            }
+            else if(o instanceof AddStateOrderDto){
+                AddStateOrderDto msg = (AddStateOrderDto)o;
+                new StateOrder(msg.productData.name, msg.productData.amount, msg.payByVexel, msg.moneyAmount, m);
             }
             
             

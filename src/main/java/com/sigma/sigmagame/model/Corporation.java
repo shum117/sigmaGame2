@@ -19,18 +19,19 @@ public class Corporation {
     public String name;
     public int account;
     public int labour;
+    public int labourRegen = 100;
     public Model m;
 
     public Corporation(String name, Model m) {
         this.m = m;
         this.members = new ArrayList<>();
         this.name = name;
-        this.account = 900;
+        this.account = 9000;
         this.labour = 100;
     }
     
     public void cycle(){
-        labour = 100;
+        labour = labourRegen;
     }
     
     public void putMoney(int n){

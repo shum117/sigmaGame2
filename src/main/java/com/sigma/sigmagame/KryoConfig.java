@@ -17,8 +17,8 @@ public class KryoConfig {
 
     static final int SERVER_PORT = 54555;
     static final int SERVER_PORT_UDP = 54777;
-    static final String ADDRESS = "192.168.1.2";//"192.168.43.232";
-
+    static final String ADDRESS = "194.190.163.136";//"192.168.43.232";
+    //static final String ADDRESS = "localhost";
 
     static void register(EndPoint point) {
         Kryo kryo = point.getKryo();
@@ -36,6 +36,7 @@ public class KryoConfig {
         kryo.register(ResourceListDto.class);
         kryo.register(ResourceBuyDto.class);
         kryo.register(RequestProductListDto.class);
+        kryo.register(ProductionDto.class);
         kryo.register(ProductListDto.class);
         kryo.register(ProductSellDto.class);
         kryo.register(RequestPlayerInformation.class);
@@ -64,6 +65,7 @@ public class KryoConfig {
         kryo.register(CompanyDataListDto.class);
         kryo.register(AddPlayer.class);
         kryo.register(VexelListDto.class);
+        kryo.register(AddStateOrderDto.class);
     }
 
     public static class Entity implements Serializable {
@@ -326,5 +328,20 @@ public class KryoConfig {
     
     public static class VexelListDto implements Serializable {
         public List<Integer> vexelIdList;
+    }
+    
+    public static class AddStateOrderDto implements Serializable {
+        public int moneyAmount;
+        public ProductData productData;
+        public boolean payByVexel;
+
+        public AddStateOrderDto(int id, int moneyAmount, ProductData productData, boolean payByVexel) {
+            this.moneyAmount = moneyAmount;
+            this.productData = productData;
+            this.payByVexel = payByVexel;
+        }
+
+        public AddStateOrderDto() {
+        }
     }
 }

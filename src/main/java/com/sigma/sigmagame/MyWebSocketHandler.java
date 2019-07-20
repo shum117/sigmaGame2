@@ -8,7 +8,11 @@ package com.sigma.sigmagame;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.eclipse.jetty.websocket.api.Session;
-import org.eclipse.jetty.websocket.api.annotations.*;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketError;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
+import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,11 +27,11 @@ import java.util.logging.Logger;
 @WebSocket
 public class MyWebSocketHandler {
     public static class News{
-        public int type;
-        public HashMap<String,String> additional;
+        public int id;
+        public HashMap<String,String> additional_params;
     } 
     public static class NewsDto{
-        public int period;
+        public int current_period;
         public ArrayList<News> news;
     } 
     

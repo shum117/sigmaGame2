@@ -85,6 +85,7 @@ public class GameClient extends Listener{
                 Process p = Runtime.getRuntime().exec("./nfc_read");
                 BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
                 id.rfid = br.readLine();
+                System.out.println(id.rfid);
                 if(id.rfid.isEmpty()){
                     System.out.println("Cannot use nfc, enter plain num");
                     System.out.print("player: ");
@@ -108,7 +109,7 @@ public class GameClient extends Listener{
         
         System.out.print("ip: ");
         System.out.flush();
-        String ip = "localhost";
+        String ip = KryoConfig.ADDRESS;
         
         GameClient gc = new GameClient(ip);
         System.out.print("command : ");
@@ -125,6 +126,8 @@ public class GameClient extends Listener{
                 }
             }else if(s.equalsIgnoreCase("lobby")){
                 SwingUtilities.invokeLater(gc.lw = new LobbyWindow(gc));
+            }else if(s.equalsIgnoreCase("cycle")){
+                gc.cli.sendTCP(new StartNewCycle());
             }else{
                 System.out.println("Unknown command");
             }

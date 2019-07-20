@@ -16,6 +16,7 @@ import static com.sigma.sigmagame.KryoConfig.*;
 
 import com.sigma.sigmagame.model.Item;
 import com.sigma.sigmagame.model.Lobby;
+import com.sigma.sigmagame.model.Scenario;
 import com.sigma.sigmagame.model.State;
 import com.sigma.sigmagame.model.StateOrder;
 
@@ -44,6 +45,7 @@ public class Model {
     public HashMap<Integer, StateOrder> orders;
     public State state;
     public Lobby lobby;
+    public Scenario sc;
     public int t = 0;
 
 
@@ -57,6 +59,7 @@ public class Model {
         state = new State(this);
         lobby = new Lobby();
         markets = new HashMap<>();
+        orders = new HashMap<>();
         for (int i = 0; i < ITEMS.length; i++) {
             switch(ITEMS[i]){
                 case "Углепластик":
@@ -101,6 +104,7 @@ public class Model {
         for (String name : CORPORATIONS) {
             corporationByName.put(name, new Corporation(name, this));
         }
+        sc = new Scenario(this);
     }
 
     public Player registerPlayer(String name, String rfid, int plain, String corp) {
@@ -113,6 +117,10 @@ public class Model {
 
     public void cycle() {
         t += 1;
+        sc.cycle();
+        for (Map.Entry<String, Corporation> corp : corporationByName.entrySet()) {
+            corp.getValue().cycle();
+        }
         for (Map.Entry<String, Market> market : markets.entrySet()) {
             market.getValue().cycle();
         }

@@ -25,7 +25,7 @@ public class Item {
         recipe = new HashMap<>();
         couldBeProduced = false;
         switch (type) {
-            case "Космический корабль":
+            case "Межгалактический корабль":
                 couldBeProduced = true;
                 recipe.put("Углепластик", 6);
                 recipe.put("Квантовый процессор", 2);
